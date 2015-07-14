@@ -1,7 +1,5 @@
-YAF扩展框架
+dandelion代码发布,持续更新中
 ==================
-
-基于YAF框架扩展，新增Service层和引入单元测试。目标为可自动化测试，可扩展的基础框架。
 
 
 ```
@@ -33,9 +31,6 @@ YAF扩展框架
 	}
 ```
 
-```
-/usr/local/php-5.4.40/bin/php /data/www/vendor/phpunit/phpunit/phpunit --bootstrap /data/www/test/bootstrap.php /data/www/test/
-```
 
 ```
 ext/yaf.ini
