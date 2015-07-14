@@ -1,0 +1,17 @@
+<?php
+    $request = Yaf\Dispatcher::getInstance()->getRequest();
+    $action  = $request->getActionName();
+?>
+<ul class="nav nav-tabs">
+  <li> 
+    <h3 style="margin-top:0px;">
+          <small><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></small>
+          <?php echo $project_name;?>
+    </h3> 
+  </li>
+  <li style="float:right;" <?php echo $action=='configure' ? 'class="active"' : ''; ?>><a href="/<?php echo $project_name;?>/configure">配置</a></li>
+  <li style="float:right;" <?php echo $action=='log' ? 'class="active"' : ''; ?>><a href="/<?php echo $project_name;?>/log">发布日志</a></li>
+  <li style="float:right;" <?php echo $action=='publish' ? 'class="active"' : ''; ?>><a href="/<?php echo $project_name;?>/publish">发布</a>
+  </li>
+  <li style="float:right;" <?php echo $action=='code' ? 'class="active"' : ''; ?>><a href="/<?php echo $project_name;?>/code">代码</a></li>
+</ul>

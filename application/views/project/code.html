@@ -1,0 +1,101 @@
+<?php include APPLICATION_VIEWS.'common/header.html' ?>
+<?php include APPLICATION_VIEWS.'common/top_menu.html' ?>
+
+<div class="row" style="padding:15px;">
+
+<div class="row" style="padding-left:15px;padding-right:5px;">
+    <div id="dropdown_branchs" class="btn-group" style="float:left;">
+      <a href="#" class="btn btn-xs btn-default" style="padding-left:15px;padding-right:15px;">trunk</a>
+      <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" style="height:450px;overflow:scroll;overflow-x: hidden;">
+        <?php
+          foreach ($version_list as $key => $value) {
+              foreach ($value as $path) {
+                echo '<li style="height:30px;"><a href="#">'.$path.'</a></li>';
+              }
+              echo '<li style="margin" class="divider"></li>';
+          }
+        ?>
+      </ul>
+    </div>
+    <input style="height:28px;width:70%;float:left;margin-left:30px;" class="form-control input-sm" type="text" value="svn://svn.coc-dept.xiaocai.com/blog/trunk" />
+</div>
+
+
+<div style="margin-top:15px;">
+
+
+    <div id="loading" style="width:50%;margin:auto;padding-top:100px;display:none;">
+      <div class="progress progress-striped active" style="margin-bottom: 5px;">
+        <div class="progress-bar progress-bar-info" style="width: 100%"></div>
+      </div>
+    </div>
+
+    <table id="codelist" class="table table-hover">
+      <tbody>
+        <tr>
+          <td>
+            <i class="glyphicon glyphicon-folder-close"></i>
+            <a href="#">controllers</a>
+          </td>
+          <td>
+            重新提交CPD扣费接口...
+          </td>
+          <td>xiaocai</td>
+          <td style="text-align:right;width:150px;">2015-7-9 15:59:55</td>
+        </tr>
+        <tr>
+          <td>
+            <i class="glyphicon glyphicon-folder-close"></i>
+            <a href="#">model</a>
+          </td>
+          <td>
+            重新提交CPD扣费接口...
+          </td>
+          <td>xiaocai</td>
+          <td style="text-align:right;width:150px;">2015-7-9 15:59:55</td>
+        </tr>
+        <tr>
+          <td> 
+            <i class="glyphicon glyphicon-file"></i> 
+            <a href="#">index.php</a>
+          </td>
+          <td>
+            1.还原md5Sign加密方式; 2.新增lvs...
+          </td>
+          <td>xiaocai</td>
+          <td style="text-align:right;width:150px;">2015-7-9 15:59:55</td>
+        </tr>
+        <tr>
+          <td>
+            <i class="glyphicon glyphicon-picture"></i>
+            <a href="#">img.jpg</a>
+          </td>
+          <td>
+            新增lvs检测页
+          </td>
+          <td>xiaocai</td>
+          <td style="text-align:right;width:150px;">2015-7-9 15:59:55</td>
+        </tr>
+      </tbody>
+    </table> 
+
+</div>
+
+</div>
+
+<?php include APPLICATION_VIEWS.'common/footer.html' ?>
+<script type="text/javascript">
+$(function(){
+
+    $('#dropdown_branchs .dropdown-menu li').click(function(){
+        var text = $(this).find('a').text();
+        $('#dropdown_branchs a').eq(0).text(text);
+        $('#codelist').hide();
+        $('#loading').show();
+    });
+
+});
+</script>
