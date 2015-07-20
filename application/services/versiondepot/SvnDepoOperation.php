@@ -41,4 +41,8 @@ class SvnDepoOperation{
         return $directorys;
     }
 
+    public function getFileContent($path){
+        return svn_cat($path);
+    }
+
 }

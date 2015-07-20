@@ -6,10 +6,8 @@ class ProjectController extends Yaf\Controller_Abstract{
         
         $ProjectEntity = new \services\project\Entity( $project_name );
         $VersionDepot  = new \services\versiondepot\Entity( $ProjectEntity );
+        $version_list  = $VersionDepot->getBranchs();
 
-        $version_list = $VersionDepot->getBranchs();
-        $version_path = $VersionDepot->getPath();
-        
         $this->getView()->assign('version_list', $version_list);
         $this->getView()->assign('version_path', $ProjectEntity->depo_path);
         $this->getView()->assign('project_name', $ProjectEntity->project_name);

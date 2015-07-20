@@ -21,12 +21,12 @@ class Entity{
         return $this->DepoOperation->getBranches($this->ProjectEntity->depo_path);
     }
 
-    public function getPath(){
-        
-    }
-
     public function getDirectory($path){
         return $this->DepoOperation->getDirectory($path);
+    }
+
+    public function getFileContent($path){
+        return $this->DepoOperation->getFileContent($path);
     }
 
 }

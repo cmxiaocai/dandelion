@@ -94,11 +94,34 @@ $(function(){
         }
     }
 
+    var loadFileContent = function(url){
+        $('#codelist').hide();
+        $('#loading').show();
+        $('#depo_path').val(url);
+        $.post('/projectajax/readfilecontent', {'name':project_name,'path':url}, function(result){
+            if(result.code!=200){
+                alert(result.message);
+            }else{
+                var append='';
+                append+='<tr><td colspan=4> <a id="backbtn" href="#" data-back="'+result.data.back+'">..</a> </td></tr>';
+                append+='<tr><td colspan=4><pre>'+result.data.content+'</pre></td></tr>';
+                $('#codelist tbody').html(append);
+                $('#codelist').show();
+                $('#loading').hide();
+            }
+            initevent();
+        }, 'json');
+    }
+
     var initevent = function(){
         $('#codelist tbody td[data-type=dir] a').click(function(){
             var dirname = $(this).attr('data-path');
             loadDirectory(dirname);
             return false;
+        });
+        $('#codelist tbody td[data-type=file] a').click(function(){
+            var dirname = $(this).attr('data-path');
+            loadFileContent(dirname);
         });
         $('#backbtn').click(function(){
           var dirname = $(this).attr('data-back');
