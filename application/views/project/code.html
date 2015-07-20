@@ -1,6 +1,9 @@
 <?php include APPLICATION_VIEWS.'common/header.html' ?>
 <?php include APPLICATION_VIEWS.'common/top_menu.html' ?>
-
+<style type="text/css">
+#backbtn{font-weight: bold;border-radius: 2px;display: block;width: 20px;height: 16px;margin-left: 10px;text-align: center;}
+#backbtn:hover{background-color: #fff;}
+</style>
 <div class="row" style="padding:15px;">
 
 <div class="row" style="padding-left:15px;padding-right:5px;">
@@ -69,7 +72,10 @@ $(function(){
         }, 'json');
         var renderHtml = function(json){
             var append = '';
-            $.each(json, function(key, val){
+            if(version_path!=json.back+'/'){
+                append+='<tr><td colspan=4> <a id="backbtn" href="#" data-back="'+json.back+'">..</a> </td></tr>';
+            }
+            $.each(json.code, function(key, val){
                 append+='<tr>';
                 if( val.type == 'dir' ){
                     append+='<td data-type=dir><i class="glyphicon glyphicon-folder-close"></i>';
@@ -86,13 +92,19 @@ $(function(){
             $('#codelist').show();
             $('#loading').hide();
         }
-        var initevent = function(){
-            $('#codelist tbody td[data-type=dir] a').click(function(){
-                var dirname = $(this).attr('data-path');
-                loadDirectory(dirname);
-                return false;
-            });
-        }
+    }
+
+    var initevent = function(){
+        $('#codelist tbody td[data-type=dir] a').click(function(){
+            var dirname = $(this).attr('data-path');
+            loadDirectory(dirname);
+            return false;
+        });
+        $('#backbtn').click(function(){
+          var dirname = $(this).attr('data-back');
+          loadDirectory(dirname);
+          return false;
+        });
     }
 
     loadDirectory(version_path+'trunk');
