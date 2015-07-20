@@ -18,15 +18,15 @@ class Entity{
     }
 
     public function getBranchs(){
-        return $this->DepoOperation->getDirectory($this->ProjectEntity->depo_path);
+        return $this->DepoOperation->getBranches($this->ProjectEntity->depo_path);
     }
 
     public function getPath(){
         
     }
 
-    public function getDirectory(){
-        
+    public function getDirectory($path){
+        return $this->DepoOperation->getDirectory($path);
     }
 
 }

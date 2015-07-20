@@ -1,20 +1,17 @@
 <?php
 
-class ProjectAjaxController extends Yaf\Controller_Abstract{
+class ProjectAjaxController extends BaseRequestController{
 
     public function readDirectoryAction(){
-        
-        $postdata = Ap_Dispatcher::getInstance()->getRequest()->getPost();
-        if(!empty($postdata)){
-            throw new Exception("错误的参数");
+        if ($this->getRequest()->getMethod() != "POST") {
+            throw new Exception();
         }
-
-        $ProjectEntity = new \services\project\Entity( $postdata['project_name'] );
+        $project_name  = $this->getRequest()->getPost("name");
+        $project_path  = $this->getRequest()->getPost("path");
+        $ProjectEntity = new \services\project\Entity( $project_name );
         $VersionDepot  = new \services\versiondepot\Entity( $ProjectEntity );
-        $version_code  = $VersionDepot->getDirectory($postdata['path']);
-
-        $this->getView()->assign('version_code', $version_code);
-        var_dump($version_code);
+        $version_code  = $VersionDepot->getDirectory($project_path);
+        $this->returnJson($version_code);
     }
 
 }

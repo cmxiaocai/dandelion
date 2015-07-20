@@ -1,7 +1,6 @@
 <?php
 namespace services\project;
 
-
 class Entity{
 
     private $data = array();
