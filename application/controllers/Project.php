@@ -2,7 +2,7 @@
 
 class ProjectController extends Yaf\Controller_Abstract{
 
-    public function codeAction($project_name){
+    public function versionAction($project_name){
         
         $ProjectEntity = new \services\project\Entity( $project_name );
         $VersionDepot  = new \services\versiondepot\Entity( $ProjectEntity );

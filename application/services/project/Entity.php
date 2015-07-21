@@ -7,7 +7,7 @@ class Entity{
 
     public function __construct($project_name){
         $this->data = array(
-            'project_name'   => 'hiapk-bbs',
+            'project_name'   => 'bmp-bm',
             'project_domain' => 'bbs.hiapk.com',
             'depo_type'      => 'svn',
             'depo_path'      => 'svn://svn.coc-dept.91.com/bm/bmp/',
