@@ -27,8 +27,9 @@
 .tree .end_collapsable { background-position:0 -200px;}
 
 .tree .indent { background-position:0 -400px;}
-.tree .line { background-position:0 -400px;}
+.tree .tee { background-position:0 -450px;}
 .tree .node { background-position:0 -500px;}
+.tree .line { background-position:0 -400px;}
 .tree .last .node { background-position:0 -500px;}
 
 .tree .folder_expandable { background-position:0 0;}
