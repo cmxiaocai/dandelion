@@ -8,7 +8,7 @@
   <div class="col-md-10">
       <div id="dropdown_branchs" class="btn-group" style="margin-bottom: -1px;">
             <a href="#" class="btn btn-xs btn-default" style="padding-left:15px;padding-right:15px;">
-                svn://svn.coc-dept.xiaocai.com/trunk
+                trunk
             </a>
             <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
               <span class="caret"></span>
@@ -127,6 +127,7 @@ $(function(){
                 alert(result.message);
             }else{
                 renderHtml(result.data.code);
+                initevent();
             }
             $('#panel_tree').show();
             $('#panel_loading').hide();
@@ -138,7 +139,7 @@ $(function(){
         $.each(json, function(key,value){
             append+='<li><div>';
             if(value.type=='dir'){
-                append+='<div class="btntree expandable"></div>';
+                append+='<div datatype=dir loaddata=false class="btntree expandable"></div>';
                 append+='<div class="glyphicon glyphicon-folder-close"></div>';
             }else{
                 append+='<div class="btntree tee expandable"></div>';
@@ -149,6 +150,24 @@ $(function(){
         });
         $('#panel_tree #tree').html(append);
     }
+
+    var initevent = function(){
+
+        //展开
+        $('#panel_tree li div[datatype=dir]').click(function(){
+            var loading = '\
+              <li><div>\
+              <div class="indent"></div>\
+              <div class="btntree node expandable"></div>\
+              <font>Loading...</font>\
+              </div></li>\
+            ';
+            $(this).parent().parent().append(loading);
+        });
+        
+    }
+
+    loadDirectory('trunk');
 
 });
 

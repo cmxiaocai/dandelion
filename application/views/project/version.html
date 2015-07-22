@@ -78,14 +78,14 @@ $(function(){
             $.each(json.code, function(key, val){
                 append+='<tr>';
                 if( val.type == 'dir' ){
-                    append+='<td data-type=dir><i class="glyphicon glyphicon-folder-close"></i>';
+                    append+='<td style="min-width:100px;" data-type=dir><i class="glyphicon glyphicon-folder-close"></i>';
                 }else{
-                    append+='<td data-type=file><i class="glyphicon glyphicon-file"></i>';
+                    append+='<td style="min-width:100px;" data-type=file><i class="glyphicon glyphicon-file"></i>';
                 }
                 append+=' <a data-path='+val.path+' href="#">'+val.name+'</a></td>';
                 append+='<td>'+val.msg+'</td>';
                 append+='<td>'+val.author+'</td>';
-                append+='<td>'+val.date+'</td>';
+                append+='<td style="text-align: right;">'+val.date+'</td>';
                 append+='</tr>';
             });
             $('#codelist tbody').html(append);

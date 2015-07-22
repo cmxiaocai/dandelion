@@ -11,6 +11,7 @@ class ProjectAjaxController extends BaseRequestController{
         $ProjectEntity = new \services\project\Entity( $project_name );
         $VersionDepot  = new \services\versiondepot\Entity( $ProjectEntity );
         $version_code  = $VersionDepot->getDirectory($project_path);
+        $version_code  = $VersionDepot->HandleLengthByDirectory($version_code);
         $this->returnJson(array(
             'back' => dirname($project_path),
             'code' => $version_code

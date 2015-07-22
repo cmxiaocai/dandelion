@@ -25,6 +25,13 @@ class Entity{
         return $this->DepoOperation->getDirectory($path);
     }
 
+    public function HandleLengthByDirectory($directorys){
+        foreach ($directorys as $key => $value) {
+            $directorys[$key]['msg'] = \Util_String::cut($value['msg'], 55);
+        }
+        return $directorys;
+    }
+
     public function getFileContent($path){
         return $this->DepoOperation->getFileContent($path);
     }
