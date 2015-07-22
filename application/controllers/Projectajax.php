@@ -10,21 +10,20 @@ class ProjectAjaxController extends BaseRequestController{
         $project_name = $this->getRequest()->getPost("name");
         $this->project_path  = $this->getRequest()->getPost("path");
         $this->ProjectEntity = new \services\project\Entity( $project_name );
+        $this->VersionDepot  = new \services\versiondepot\Entity( $this->ProjectEntity );
     }
 
     public function readDirectoryAction(){
-        $VersionDepot  = new \services\versiondepot\Entity( $this->ProjectEntity );
-        $version_code  = $VersionDepot->getDirectory($this->project_path);
-        $version_code  = $VersionDepot->handleLengthByDirectory($version_code);
+        $version_dir = $this->VersionDepot->getDirectory($this->project_path);
+        $version_dir = $this->VersionDepot->handleLengthByDirectory($version_dir);
         $this->returnJson(array(
             'back' => dirname($this->project_path),
-            'code' => $version_code
+            'code' => $version_dir
         ));
     }
 
     public function readFileContentAction(){
-        $VersionDepot  = new \services\versiondepot\Entity( $this->ProjectEntity );
-        $content  = $VersionDepot->getFileContent($this->project_path);
+        $content = $this->VersionDepot->getFileContent($this->project_path);
         $this->returnJson(array(
             'back'    => dirname($this->project_path),
             'content' => $content
