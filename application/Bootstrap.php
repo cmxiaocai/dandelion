@@ -31,27 +31,20 @@ class Bootstrap extends Yaf\Bootstrap_Abstract{
         define('APPLICATION_VIEWS', APPLICATION_PATH . '/views/');
     }
     
-    // 捕获异常
-    // public function _initException(Ap_Dispatcher $dispatcher) {
-    //     Ap_Dispatcher::getInstance()->throwException(true);
-    //     Ap_Dispatcher::getInstance()->catchException(false);
-    //     set_exception_handler( array(new Core_ExceptionHandler(), 'handler') );
-    // }
+    //捕获异常
+    public function _initException(Yaf\Dispatcher $dispatcher) {
+        Yaf\Dispatcher::getInstance()->throwException(true);
+        Yaf\Dispatcher::getInstance()->catchException(false);
+        set_exception_handler( array(new Yaf_ExceptionHandler(), 'handler') );
+    }
 
 }
 
 
 
-class Core_ExceptionHandler {
-
+class Yaf_ExceptionHandler {
 
     public function handler( $exception ) {
-        // 若是Ap定义的异常被接收到
-        if ( $exception instanceof Ap_Exception ) {
-            $this->ApExceptionHandler( $exception );
-            return;
-        }
-
         foreach ( $exception->getTrace() as $trace ) {
             if ( ! method_exists($trace['class'], 'defaultExceptionHandler' ) ) 
                 continue;
@@ -61,23 +54,16 @@ class Core_ExceptionHandler {
             );
             exit();
         }
-
         $this->defaultExceptionHandler( $exception );
     }
 
-
-    public function ApExceptionHandler( Ap_Exception $exception ) {
-        //print_r($exception);
-        $this->getView()->assign("exception", $exception);
-        $this->getView()->display('error/error_ap.html');
-    }
-
     public function defaultExceptionHandler( Exception $exception ) {
+        $this->getView()->setScriptPath(APPLICATION_VIEWS);
         $this->getView()->assign("exception", $exception);
-        $this->getView()->display('error/error.html');
+        $this->getView()->display('error/error.html');die;
     }
 
     public function getView() {
-        return Ap_Dispatcher::getInstance()->initView( APP_VIEWS_PATH );
+        return Yaf\Dispatcher::getInstance()->initView(APPLICATION_VIEWS);
     }
 }

@@ -63,7 +63,7 @@ $(function(){
         $('#loading').show();
         $('#depo_path').val(url);
         $.post('/projectajax/readdirectory', {'name':project_name,'path':url}, function(result){
-            if(result.code!=200){
+            if(result.code!=0){
                 alert(result.message);
             }else{
                 renderHtml(result.data);
@@ -99,7 +99,7 @@ $(function(){
         $('#loading').show();
         $('#depo_path').val(url);
         $.post('/projectajax/readfilecontent', {'name':project_name,'path':url}, function(result){
-            if(result.code!=200){
+            if(result.code!=0){
                 alert(result.message);
             }else{
                 var append='';

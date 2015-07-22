@@ -123,7 +123,7 @@ $(function(){
         $('#panel_tree').hide();
         $('#panel_loading').show();
         $.post('/projectajax/readdirectory', {'name':project_name,'path':version_path+path}, function(result){
-            if(result.code!=200){
+            if(result.code!=0){
                 alert(result.message);
             }else{
                 renderHtml(result.data.code);

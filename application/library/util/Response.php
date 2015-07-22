@@ -16,7 +16,7 @@ class Util_Response{
      */
     public static function apiReturn($code, $message, $data=array(), $callback=false, $isheader=true){
         if ( TRUE === $code ) {
-            $code = 200;
+            $code = 0;
         }
         if ( $isheader ){
             header('Content-type:application/json;charset=utf-8');

@@ -1,1 +1,9 @@
-<?php echo 'ERROR::'.$message; ?>
+<?php include APPLICATION_VIEWS.'common/header.html' ?>
+
+<div class="row" style="padding:15px;padding-top:30px;">
+    <pre>
+    <?php print_r($exception);?>
+    </pre>
+</div>
+
+<?php include APPLICATION_VIEWS.'common/footer.html' ?>
